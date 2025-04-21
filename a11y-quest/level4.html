@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 4 - Tab-Traverse Tales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/html5reset.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta name="description" content="Navigate through a story using keyboard navigation to uncover the path to the final quest" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header role="banner">
+    <h1 tabindex="0">Level 4: Tab-Traverse Tales</h1>
+    <p class="tagline" role="doc-subtitle">Tab through the trail to reveal the final quest...</p>
+  </header>
+  <main id="main-content">
+    <section class="instructions" aria-label="Game Instructions">
+        <h2 tabindex="0">Instructions:</h2>
+        <p tabindex="0">Use the Tab key to navigate through each journal entry. Each entry will be revealed as you focus on it. There are 4 entries to discover.</p>
+    </section>
+    <section class="story-section visible" tabindex="0" data-index="0" aria-label="Story Journal Entry 1" >
+      <h2 tabindex="0">📜 Journal Entry #1</h2>
+      <p tabindex="0">“The princess was last seen near the Castle of Cascading Style Sheets...”</p>
+    </section>
+    <section class="story-section hidden-section" tabindex="0" data-index="1" aria-label="Story Journal Entry 2">
+      <h2>🗺️ Journal Entry #2</h2>
+      <p>“She vanished among broken landmarks — inaccessible links, missing labels...”</p>
+    </section>
+    <section class="story-section hidden-section" tabindex="0" data-index="2" aria-label="Story Journal Entry 3">
+      <h2>🪨 Clue Found</h2>
+      <p>A scroll reads: “The enemy hides in the shadows of poorly tabbed layouts...”</p>
+    </section>
+    <section class="story-section hidden-section" tabindex="0" data-index="3" aria-label="Story Journal Entry 4">
+      <h2>✨ Final Entry</h2>
+      <p>Only those who brave all levels shall unlock the final battle ahead...</p>
+    <a href="level5.html" class="start-button" aria-label="Begin Final Level of the accessibility quest" role="status" aria-live="polite">Begin Final Level →</a>
+    </section>
+  </main>
+  <script src="../js/level4.js"></script>
+  <footer role="contentinfo" tabindex="0">
+    <p>&copy; 2025 A11y Quest | The journey is almost over...</p>
+  </footer>
+</body>
+</html>

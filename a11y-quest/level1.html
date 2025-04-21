@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 1 – Keyboard Kingdom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/html5reset.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta name="description" content="Learn about keyboard accessibility by finding the only truly accessible button"/>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <h1 tabindex="0">Level 1: Keyboard Kingdom</h1>
+    <p class="tagline" tabindex="0" role="doc-subtitle">Only one button is truly accessible. Can you find it? Hint: Use your tab key to move around the page</p>
+  </header>
+
+  <main id="main-content">
+    <section class="instructions" aria-label="Game Instructions">
+      <h2>Instructions:</h2>
+      <p tabindex="0"><strong>Use only your keyboard (Tab + Enter)</strong> to find and activate the real button. The others are imposters!</p>
+      <p tabindex="0">Thre are multiple elements that look like buttons, only one is properly coded as a real button that can be activated using the Tab key.</p>
+    </section>
+
+    <section class="button-grid" tabindex="0">
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <button class="game-button real-button" id="realBtn">Click Me (if you can!)</button>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+      <div class="game-button fake-button" aria-hidden="true">Click Me (if you can!)</div>
+    </section>
+
+    <section id="success-message" class="hidden" role="status" aria-live="polite">
+      <h2 tabindex="0">🎉 You did it!</h2>
+      <p tabindex="0">Only elements using <code>&lt;button&gt;</code> (or properly configured elements with <code>role="button"</code> and keyboard events) are truly accessible.</p>
+      <a href="level2.html" class="start-button" aria-label="Proceed to Level 2">Next Level →</a>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 A11y Quest | The journey continues…</p>
+  </footer>
+
+  <script src="../js/level1.js"></script>
+</body>
+</html>

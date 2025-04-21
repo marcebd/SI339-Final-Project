@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 5 - Courtroom Showdown</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/html5reset.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta name="description" content="Final challenge: Defend web accessibility in a courtroom showdown against Anti-A11y by answering questions correctly" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main</a>
+
+  <header role="banner">
+    <h1 tabindex="0">A11y Quest - Final Level: Courtroom Showdown</h1>
+    <p class="tagline" role="doc-subtitle" tabindex="0">
+      Defeat Anti-A11y by citing facts and proving why accessibility matters!
+    </p>
+  </header>
+  <main id="main-content" role="main">
+  <section class="instructions" aria-label="Game Instructions">
+      <h2 tabindex="0">Instructions:</h2>
+      <p tabindex="0">Answer the multiple choice questions about accesibility. Your correct answers matter on whether you save the princess or not!</p>
+  </section>
+
+    <section class="scorebox" aria-label="Score Tracker">
+      <h3 id="progress-indicator" class="progress-indicator" role="status" aria-live="polite">Question 1 of 5</h3>
+      <h3 id="score" role="status" aria-live="polite">Score: 0</h3>
+    </section>
+
+    <section id="question-box" class="question-box" aria-live="polite" role="region" aria-label="Current Question">
+      <p id="objection-text" class="objection-text" aria-live="assertive">Loading objection…</p>
+    </section>
+
+    <section id="answers" class="answers" aria-label="Answer Options" role="region">
+      <!-- Multiple choice buttons will be added here -->
+    </section>
+    <!-- Feedback message -->
+    <section id="feedback" class="feedback" role="alert" aria-live="assertive"></section>
+  </main>
+  <!-- Final Veredict -->
+  <section id="verdict" class="hidden" role="region" aria-label="Final Verdict">
+    <h2 id="verdict-message" tabindex="0">[Verdict goes here]</h2>
+    <button id="save-queen-btn" class="hidden" aria-label="Proceed to save the queen">👑 Go and Save Your Queen</button>
+    <button id="restart-btn" aria-label="Restart the courtroom challenge">⚖️ Try Again</button>
+  </section>
+  <footer role="contentinfo" tabindex="0">
+    <p>&copy; 2025 A11y Quest | Built for everyone, by everyone ♿</p>
+  </footer>
+  <script src="../js/level5.js"></script>
+</body>
+</html>

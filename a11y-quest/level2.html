@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 2 - Contrast Caverns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/html5reset.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <meta name="description" content="Learn about color contrast accessibility by identifying poorly contrasting wanted posters" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <h1 tabindex="0">Level 2: Contrast Caverns</h1>
+    <p class="tagline" role="doc-subtitle" tabindex="0">Spot the villain's inaccessible wanted posters!</p>
+  </header>
+
+  <main id="main-content">
+    <section class="instructions" aria-label="Game Instructions">
+        <h2>Instructions:</h2>
+      <p><strong>Your task:</strong> Click all the posters that are hard to read. Poor contrast makes content inaccessible.</p>
+      <p tabindex="0">There are 6 wanted posters, 5 have accesibility violations with poor color constrasst, 1 is accesible. Find the ones that are unaccesible.</p>
+      <p tabindex="0">Press Enter or Space to select this poster if you think it has poor color contrast. </p>
+    </section>
+     <!-- Feedback message -->
+     <section id="poster-feedback" class="poster-feedback" role="status" aria-live="polite"></section>
+    <section class="poster-grid" aria-label="Wanted posters gallery">
+      <!-- BAD Contrast Posters -->
+      <div class="poster bad-contrast light-on-light" tabindex="0" aria-label="Inaccesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 5,000,000g</h3>
+        <p class="crime">Crime: Using light gray text on light backgrounds</p>
+      </div>
+      <div class="poster bad-contrast yellow-on-white" tabindex="0" aria-label="Inaccesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 6,000,000g</h3>
+        <p class="crime">Crime: Yellow text on white backgrounds</p>
+      </div>
+      <div class="poster bad-contrast red-on-green" tabindex="0" aria-label="Inaccesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 7,000,000g</h3>
+        <p class="crime">Crime: Red text on green background</p>
+      </div>
+      <div class="poster bad-contrast blue-on-gray" tabindex="0" aria-label="Inaccesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 4,500,000g</h3>
+        <p class="crime">Crime: Pale blue text on gray backgrounds</p>
+      </div>
+      <div class="poster bad-contrast gray-on-gray" tabindex="0" aria-label="Inaccesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 8,000,000g</h3>
+        <p class="crime">Crime: Gray on gray text crime wave</p>
+      </div>
+
+      <!-- Accessible Poster -->
+      <div class="poster accessible" tabindex="0 aria-label="Accesible wanted poster">
+        <h2>WANTED</h2>
+        <img src="../images/villain.png" alt="Anti-A11y villain" />
+        <h3 class="bounty">Bounty: 3,000,000g</h3>
+        <p class="crime">Crime: None. This poster meets all standards.</p>
+      </div>
+    </section>
+
+    <!-- Success message -->
+    <section id="level2-success" class="hidden" role="alert" aria-live="polite">
+      <h2>🕶️ Great job!</h2>
+      <p>You’ve identified all the inaccessible posters. High contrast saves eyes!</p>
+      <a href="level3.html" class="start-button" aria-label="Conitnue to Level 3 of the accesibility quest">Onward to Level 3 →</a>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2025 A11y Quest | See clearly, click confidently.</p>
+  </footer>
+
+  <script src="../js/level2.js"></script>
+</body>
+</html>

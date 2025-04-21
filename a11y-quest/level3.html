@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Level 3 – Poster Repair Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/html5reset.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+    <meta name="description" content="Interactive lab where you can fix accesibility issues by adjusting color constrast on wanted poster" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <h1 tabindex="0">Level 3: Poster Repair Lab</h1>
+    <p class="tagline" tabindex="0">Help redesign this inaccessible poster!</p>
+  </header>
+
+  <main id="main-content">
+    <section class="instructions" aria-label="Game Instructions">
+    <h2 tabindex="0">Instructions:</h2>
+      <p tabindex="0">The villain's poster is unreadable. Use the controls below to fix the contrast between the text and background.</p>
+      <p tabindex="0">Use the color picker to adjust the background and text color. The goal is to achieve a contrast ratio of at least 4.5:1 for good readability.</p>
+    </section>
+
+    <section class="repair-lab" aria-label="Poster customization area">
+        <div class="poster-box">
+        <div id="poster-preview" class="poster broken" role="region" aria-label="Wanted poster preview" aria-live="polite" tabindex="0">
+            <h2>WANTED</h2>
+            <img src="../images/villain.png" alt="Villain illustration" />
+            <p class="bounty">Bounty: 10,000,000g</p>   
+            <p class="crime">Crime: Designing inaccessible layouts!</p>
+        </div>
+        <form id="colorForm" class="color-controls" onsubmit="return false" aria-label="Color adjustment form">
+            <label for="bgColor" tabindex="0">Background color:</label>
+            <input type="color" id="bgColor" name="bgColor" value="#cccccc" aria-label="Choose background color" aria-roledescription="Use this color picker to change the poster's background color" />
+            <label for="textColor" tabindex="0">Text color:</label>
+            <input type="color" id="textColor" name="textColor" value="#aaaaaa" aria-label="Choose text color" aria-roledescription="Use this color picker to change the poster's text color"/>
+            <button id="applyBtn" aria-label="Apply selected colors to posters">Apply Colors</button>
+        </form>
+    </div>
+    <!-- Feedback area for constrast results -->
+      <p id="contrastResult" class="poster-feedback" role="status" aria-live="polite"></p>
+    <!-- Success message -->
+      <div id="level3-success" class="hidden" role="status" role="alert" aria-live="polite">
+        <h2>🎨 Success!</h2>
+        <p>You've created a readable, accessible poster. You're a design hero!</p>
+        <a href="level4.html" class="start-button" aria-label="Continue to Level 4 of the accesibility quest"> Continue to Level 4 →</a>
+      </div>
+    </section>
+  </main>
+  <footer role="contentinfo" tabindex="0">
+    <p>&copy; 2025 A11y Quest | Design with contrast in mind.</p>
+  </footer>
+  <script src="../js/level3.js"></script>
+</body>
+</html>
