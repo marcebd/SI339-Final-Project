@@ -18,23 +18,9 @@ const buttonTexts = [
   "Save", "Delete", "Edit", "View", "Close", "Open", "Start"
 ];
 
-function getPositionDescription(row, col) {
-  return `Row ${row + 1}, Column ${col + 1} of ${gridSize}`;
-}
-
 function createMaze() {
-  // Set up maze container with proper ARIA attributes
-  mazeGrid.setAttribute('role', 'application');
-  mazeGrid.setAttribute('aria-label', 'Maze Game - Use arrow keys to navigate');
   mazeGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   mazeGrid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-
-  // Add keyboard instructions
-  const instructions = document.createElement('div');
-  instructions.setAttribute('role', 'note');
-  instructions.className = 'sr-only';
-  instructions.textContent = 'Use arrow keys or W, A, S, D keys to move through the maze. Avoid blocked paths and reach the Queen at the bottom right.';
-  mazeGrid.parentNode.insertBefore(instructions, mazeGrid);
 
   for (let row = 0; row < gridSize; row++) {
     for (let col = 0; col < gridSize; col++) {
@@ -43,71 +29,50 @@ function createMaze() {
       cell.classList.add("maze-cell");
       cell.setAttribute("data-row", row);
       cell.setAttribute("data-col", col);
-      cell.setAttribute('role', 'gridcell');
-      cell.setAttribute('aria-label', getPositionDescription(row, col));
 
-      // Only create buttons for player, goal, and blockers
-      if (key === "11,11" || key === "0,0" || blockers.has(key)) {
-        const button = document.createElement("button");
-        button.classList.add("maze-button");
-        
-        if (key === "11,11") {
-          button.classList.add("goal-button");
-          button.innerHTML = '👑<br>Queen';
-          button.setAttribute('aria-label', 'Queen\'s location - Goal');
-          cell.classList.add("goal");
-          cell.setAttribute('aria-label', `Goal: ${getPositionDescription(row, col)}`);
-        } else if (key === "0,0") {
-          button.classList.add("player-button");
-          button.innerHTML = '🧑';
-          button.setAttribute('aria-label', 'Player current position');
-          cell.classList.add("player");
-          cell.setAttribute('aria-label', `Player at ${getPositionDescription(row, col)}`);
-        } else if (blockers.has(key)) {
-          button.classList.add("blocker-button");
-          const buttonText = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
-          button.textContent = buttonText;
-          button.setAttribute('aria-label', `Blocked path: ${buttonText} button`);
-          cell.classList.add("block");
-          cell.setAttribute('aria-label', `Blocked at ${getPositionDescription(row, col)}`);
-        }
-        
-        // Prevent button clicks from moving the player
-        button.addEventListener('click', (e) => e.preventDefault());
-        cell.appendChild(button);
+      const button = document.createElement("button");
+      button.classList.add("maze-button");
+      
+      if (key === "11,11") {
+        button.classList.add("goal-button");
+        button.innerHTML = '👑<br>Queen';
+        cell.classList.add("goal");
+      } else if (key === "0,0") {
+        button.classList.add("player-button");
+        button.innerHTML = '🧑';
+        cell.classList.add("player");
+      } else if (blockers.has(key)) {
+        button.classList.add("blocker-button");
+        // Get random button text
+        button.textContent = buttonTexts[Math.floor(Math.random() * buttonTexts.length)];
+        cell.classList.add("block");
       } else {
-        // For path cells, just add the path class without a button
+        button.classList.add("path-button");
+        button.innerHTML = '-';
         cell.classList.add("path");
-        cell.setAttribute('aria-label', `Open path at ${getPositionDescription(row, col)}`);
       }
       
+      // Prevent button clicks from moving the player
+      button.addEventListener('click', (e) => e.preventDefault());
+      cell.appendChild(button);
       mazeGrid.appendChild(cell);
     }
   }
-
-  // Add description of maze layout
-  const mazeDescription = document.createElement('div');
-  mazeDescription.setAttribute('role', 'note');
-  mazeDescription.className = 'sr-only';
-  mazeDescription.textContent = `The maze is ${gridSize} by ${gridSize}. You start at the top left. The Queen is at the bottom right. Various buttons block your path.`;
-  mazeGrid.parentNode.insertBefore(mazeDescription, mazeGrid);
 }
 
 function updatePlayerPosition(newRow, newCol) {
   const newKey = `${newRow},${newCol}`;
   if (newRow < 0 || newCol < 0 || newRow >= gridSize || newCol >= gridSize || blockers.has(newKey)) {
-    mazeStatus.textContent = "⛔ That path is blocked!";
+    mazeStatus.textContent = "⛔ That button is blocking your path!";
     return;
   }
 
   const oldCell = document.querySelector(".player");
   if (oldCell) {
     oldCell.classList.remove("player");
-    oldCell.setAttribute('aria-label', `Open path at ${getPositionDescription(parseInt(oldCell.dataset.row), parseInt(oldCell.dataset.col))}`);
     const oldButton = oldCell.querySelector("button");
-    if (oldButton) {
-      oldButton.remove();
-    }
+    oldButton.classList.remove("player-button");
+    oldButton.innerHTML = '-';
   }
 
   player.row = newRow;
@@ -115,84 +80,50 @@ function updatePlayerPosition(newRow, newCol) {
 
   const newCell = document.querySelector(`[data-row="${newRow}"][data-col="${newCol}"]`);
   newCell.classList.add("player");
-  newCell.setAttribute('aria-label', `Player at ${getPositionDescription(newRow, newCol)}`);
-  
-  const playerButton = document.createElement("button");
-  playerButton.classList.add("maze-button", "player-button");
-  playerButton.innerHTML = '🧑';
-  playerButton.setAttribute('aria-label', 'Player current position');
-  newCell.appendChild(playerButton);
+  const newButton = newCell.querySelector("button");
+  newButton.classList.add("player-button");
+  newButton.innerHTML = '🧑';
 
   if (newKey === "11,11") {
     mazeGrid.style.display = "none";
     mazeStatus.style.display = "none";
     mazeVictory.classList.remove("hidden");
     mazeVictory.classList.add("visible");
-    mazeVictory.focus();
   } else {
-    const distanceToGoal = Math.abs(11 - newRow) + Math.abs(11 - newCol);
-    mazeStatus.textContent = `You are ${distanceToGoal} steps away from the Queen. ${getPositionDescription(newRow, newCol)}`;
+    mazeStatus.textContent = `Navigate through the buttons using arrow keys`;
   }
 }
 
 document.addEventListener("keydown", (e) => {
   if (!mazeVictory.classList.contains("visible")) {
     const { row, col } = player;
-    let moved = false;
-
     switch (e.key) {
       case "ArrowUp":
       case "w":
       case "W":
         e.preventDefault();
         updatePlayerPosition(row - 1, col);
-        moved = true;
         break;
       case "ArrowDown":
       case "s":
       case "S":
         e.preventDefault();
         updatePlayerPosition(row + 1, col);
-        moved = true;
         break;
       case "ArrowLeft":
       case "a":
       case "A":
         e.preventDefault();
         updatePlayerPosition(row, col - 1);
-        moved = true;
         break;
       case "ArrowRight":
       case "d":
       case "D":
         e.preventDefault();
         updatePlayerPosition(row, col + 1);
-        moved = true;
         break;
-    }
-
-    // Announce available moves after each movement
-    if (moved) {
-      announceAvailableMoves(player.row, player.col);
     }
   }
 });
-
-function announceAvailableMoves(row, col) {
-  const moves = [];
-  if (row > 0 && !blockers.has(`${row-1},${col}`)) moves.push("up");
-  if (row < gridSize-1 && !blockers.has(`${row+1},${col}`)) moves.push("down");
-  if (col > 0 && !blockers.has(`${row},${col-1}`)) moves.push("left");
-  if (col < gridSize-1 && !blockers.has(`${row},${col+1}`)) moves.push("right");
-  
-  const moveAnnouncement = document.createElement('div');
-  moveAnnouncement.setAttribute('role', 'status');
-  moveAnnouncement.className = 'sr-only';
-  moveAnnouncement.textContent = `Available moves: ${moves.join(", ")}`;
-  mazeGrid.parentNode.appendChild(moveAnnouncement);
-  
-  // Remove the announcement after it's been read
-  setTimeout(() => moveAnnouncement.remove(), 1000);
-}
 
 createMaze();
